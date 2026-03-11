@@ -1,7 +1,7 @@
 const number: number = 12;
 
 // Cannot name "name" in TypeScript because it is a reserved word
-let myName: string = "my number";
+let Name: string = "my number";
 
 let isEven: boolean = false;
 
