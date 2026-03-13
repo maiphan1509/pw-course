@@ -1,0 +1,31 @@
+1. Thẻ cấu trúc cơ bản:
+- <html>: Thẻ gốc của trang
+- <head>: Chứa metadata: Title, hiển thị Google
+- <body>: Nội dung của website
+- <div>: Khối, container chung
+- <span>: Inline container
+- <header>, <footer>, <nav>, <section>: Thẻ ngữ nghĩa
+-Thẻ nội dung: 
+    + <h1> đến <h6>: tiêu đề
+    + <p>: đoạn văn
+    + <a>: liên kết
+    + <img>: hình ảnh
+    + <ul>, <ol>, <li>: danh sách
+- Thẻ from:
+    + <form>: Biểu mẫu
+    + <input>: Ô nhập liệu
+    + <button>: Nút
+    + <select> và <option>: Dropdown
+    + <textarea>: Vùng văn bản nhiều dòng
+
+2. Cấu trúc html của 1 bảng:
+<table border="1">
+  <tr> 
+    <th>Tiêu đề 1</th>
+    <th>Tiêu đề 2</th>
+  </tr>
+  <tr>
+    <td>Dữ liệu 1</td>
+    <td>Dữ liệu 2</td>
+  </tr>
+</table>

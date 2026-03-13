@@ -1,4 +1,0 @@
-- git commit --amend: được sử dụng để mở trình soạn thảo
-- git commit --amend -m <message>: sửa nhanh message của commit mới nhất
-- git restore --staged <file>: loại bỏ tệp tin ra khỏi khu vực chờ commit (Staging Area/Index), nhưng vẫn giữ nguyên nội dung chỉnh sửa trong thư mục làm việc (Working Directory), hữu ích khi dùng trước khi gõ lệnh git commit
-- git reset HEAD~1: xóa commit mới nhất nhưng vẫn giữ file còn nẳm ở Staging Area
