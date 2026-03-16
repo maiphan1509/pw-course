@@ -44,18 +44,16 @@ test("Register Page Test", async ({ page }) => {
 });
 
 const rateStar = async (page: Page, rating: number) => {
-  const size = await startRatingSize(page);
-  console.log(size);
-  const clickX = (rating / 5) * size.width;
-  const clickY = size.height / 2;
+  const box = await page.locator("#starRating").boundingBox();
 
-  await page
-    .locator(`div[id="starRating"]`)
-    .click({ position: { x: clickX, y: clickY } });
-};
+  if (!box) return;
 
-const startRatingSize = async (page: Page) => {
-  return await page.locator(`div[id="starRating"]`).evaluate((el) => {
-    return { width: el.clientWidth, height: el.clientHeight };
+  const starWidth = box.width / 5;
+
+  await page.locator("#starRating").click({
+    position: {
+      x: starWidth * rating,
+      y: box.height / 2,
+    },
   });
 };
