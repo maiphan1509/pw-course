@@ -5,7 +5,7 @@ test("Add and remove todo", async ({ page }) => {
   await page.click("text=Bài học 3: Todo Page");
 
   await addTodo(page, "Todo", 100);
-  await removeEvenTodo(page, "Todo");
+  await removeOddTodo(page, "Todo");
 
   await expect(page.locator('li:has-text("Todo")')).toHaveCount(50);
 });
@@ -17,7 +17,7 @@ const addTodo = async (page: Page, todo: string, quantity: number) => {
   }
 };
 
-const removeEvenTodo = async (page: Page, todo: string) => {
+const removeOddTodo = async (page: Page, todo: string) => {
   const todoItems = page.locator(`li:has-text("${todo}")`);
   const count: number = await todoItems.count();
 
