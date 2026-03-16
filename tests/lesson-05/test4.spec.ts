@@ -2,14 +2,20 @@ import { expect, Page, test } from "@playwright/test";
 import { dataNote } from "./data-note";
 
 test("Add notes and search", async ({ page }) => {
-  await page.goto("https://material.playwrightvn.com/");
-  await page.click("text=Bài học 4: Personal notes");
+  await test.step("1. Go to the personal notes page", async () => {
+    await page.goto("https://material.playwrightvn.com/");
+    await page.click("text=Bài học 4: Personal notes");
+  });
 
-  for (const note of dataNote) {
-    await addNotes(page, note.action, note.description);
-  }
+  await test.step("2. Add notes", async () => {
+    for (const note of dataNote) {
+      await addNotes(page, note.action, note.description);
+    }
+  });
 
-  await page.locator('input[id="search"]').fill("một hoặc nhiều");
+  await test.step("3. Search for notes containing 'một hoặc nhiều'", async () => {
+    await page.locator('input[id="search"]').fill("một hoặc nhiều");
+  });
 
   const expectedCount = countOccurrences(dataNote, "một hoặc nhiều");
   await expect(page.locator("li")).toHaveCount(expectedCount);
@@ -17,6 +23,8 @@ test("Add notes and search", async ({ page }) => {
     page.getByText(`Total Notes: ${expectedCount}`, { exact: true }),
   ).toBeVisible();
 });
+
+// Functions ⬇
 
 const addNotes = async (page: Page, title: string, content: string) => {
   await page.locator('input[id="note-title"]').fill(title);

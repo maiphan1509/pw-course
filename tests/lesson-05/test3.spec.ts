@@ -1,14 +1,22 @@
 import { expect, Page, test } from "@playwright/test";
 
 test("Add and remove todo", async ({ page }) => {
-  await page.goto("https://material.playwrightvn.com/");
-  await page.click("text=Bài học 3: Todo Page");
+  await test.step("1. Go to the todo page", async () => {
+    await page.goto("https://material.playwrightvn.com/");
+    await page.click("text=Bài học 3: Todo Page");
+  });
 
-  await addTodo(page, "Todo", 100);
-  await removeOddTodo(page, "Todo");
+  await test.step("2. Add 100 todos and remove odd todos", async () => {
+    await addTodo(page, "Todo", 100);
+  });
+  await test.step("3. Remove odd todos", async () => {
+    await removeOddTodo(page, "Todo");
+  });
 
   await expect(page.locator('li:has-text("Todo")')).toHaveCount(50);
 });
+
+// Functions ⬇
 
 const addTodo = async (page: Page, todo: string, quantity: number) => {
   for (let i = 0; i < quantity; i++) {

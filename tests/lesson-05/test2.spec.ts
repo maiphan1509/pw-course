@@ -1,12 +1,16 @@
 import { expect, Page, test } from "@playwright/test";
 
 test("Add product", async ({ page }) => {
-  await page.goto("https://material.playwrightvn.com/");
-  await page.click("text=Bài học 2: Product Page");
+  test.step("1. Go to the product page", async () => {
+    await page.goto("https://material.playwrightvn.com/");
+    await page.click("text=Bài học 2: Product Page");
+  });
 
-  await addToCart(page, "Product 1", 2);
-  await addToCart(page, "Product 2", 3);
-  await addToCart(page, "Product 3", 1);
+  test.step("2. Add products to the cart", async () => {
+    await addToCart(page, "Product 1", 2);
+    await addToCart(page, "Product 2", 3);
+    await addToCart(page, "Product 3", 1);
+  });
 
   const quantityIndex = await getColumnIndex(page, "Quantity");
 
@@ -20,6 +24,8 @@ test("Add product", async ({ page }) => {
     page.locator(`tr:has-text("Product 3") td:nth-child(${quantityIndex})`),
   ).toHaveText("1");
 });
+
+// Functions ⬇
 
 const addToCart = async (page: Page, product: string, quantity: number) => {
   const productLocator = page.locator(
